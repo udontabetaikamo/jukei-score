@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住み続け指数（OCI）| 投資前に"いない"を確かめる</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #3d7bd4 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c5aa0 0%, #3d7bd4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c5aa0;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .solution-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .solution-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .solution-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .solution-image {
+            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        /* How it Works */
+        .how-it-works {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #2c5aa0;
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Customers */
+        .customers {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .customer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .customer-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #2c5aa0;
+        }
+        
+        .customer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .pricing-card.recommended {
+            border: 3px solid #ff6b35;
+            transform: scale(1.05);
+        }
+        
+        .recommended-badge {
+            background: #ff6b35;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin: 1rem 0;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #2c5aa0 0%, #3d7bd4 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            padding: 0.3rem 0;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .solution-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .header-content {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    住継スコア
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#solution">サービス</a></li>
+                        <li><a href="#how-it-works">仕組み</a></li>
+                        <li><a href="#customers">導入事例</a></li>
+                        <li><a href="#pricing">料金</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>投資前に"いない"を確かめる</h1>
+            <p class="subtitle">住み続け指数で、無駄な投資をストップ</p>
+            <a href="#contact" class="cta-button">無料診断を申し込む</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <h2 class="section-title">使われなくなってから閉めるのは遅い</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🏦</div>
+                    <h3>銀行ATM・店舗の課題</h3>
+                    <p>取引件数・稼働率・CIT/保守コストで撤退判断しているが、これらは「利用の点」= 遅行指標。落ちてから反映される。</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🏪</div>
+                    <h3>コンビニ出店の課題</h3>
+                    <p>商圏人口・昼夜間人口・交通量などの典型データは信用度が高いが、常住の「底」や季節・二地域居住の影響を過小評価しがち。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <h2 class="section-title">「住み続け」の低下は先に出る</h2>
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h3>OCI（Occupancy Continuity Index）とは</h3>
+                    <p>外観から得られる複数のシグナルをAIで統合し、時系列で追跡することで、実際の居住状況を高い精度で把握する指標です。</p>
+                    <ul class="solution-features">
+                        <li>夜間常灯・ポスト・車両常在の減少は利用低下の前兆を検知</li>
+                        <li>撤退・統合の優先順位を四半期〜1年前倒し可能</li>
+                        <li>家→メッシュ集計の監査可能な根拠で社内稟議・地域調整に対応</li>
+                        <li>利用"だけ"の瞬間値で切らず、時系列でフェアに判断</li>
+                    </ul>
+                </div>
+                <div class="solution-image">
+                    <h4>外観シグナル (0/1)</h4>
+                    <p>🌙 夜間点灯<br>📮 ポスト活動<br>🚗 車両常在</p>
+                    <br>
+                    <h4>LLM判定 + 時系列平滑化</h4>
+                    <p>0.00-1.00で連続スコア</p>
+                    <br>
+                    <h4>プライバシー保護</h4>
+                    <p>公開はメッシュ、精密位置は契約目的限定</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">MVPの仕組み</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>サンプリング</h3>
+                    <p>500mメッシュ内で30-40点のサンプリングポイントを設定</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>データ収集</h3>
+                    <p>各ポイントで外観シグナルを0/1で入力（Google Mapベースで構築）</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>AI判定</h3>
+                    <p>LLMによる判定でvacant/occupied + 理由をJSON返却</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>結果提供</h3>
+                    <p>avg_ociが低いメッシュ = 撤退/見送りの「当たり」として提供</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customers -->
+    <section class="customers" id="customers">
+        <div class="container">
+            <h2 class="section-title">導入事例</h2>
+            <div class="customer-grid">
+                <div class="customer-card">
+                    <div class="customer-logo">🏦 中国銀行フィナンシャルグループ</div>
+                    <p><strong>店舗数：</strong>137箇所<br>
+                    <strong>店舗外ATM：</strong>194箇所<br>
+                    <strong>概要：</strong>岡山本拠の地銀。瀬戸内海で面展開</p>
+                    <br>
+                    <p><strong>効果：</strong>利用低下の前段で持続的な無人化傾向を検知し、撤退・統合の優先順位を四半期〜1年前倒しを実現</p>
+                </div>
+                <div class="customer-card">
+                    <div class="customer-logo">🏪 ローソン</div>
+                    <p><strong>国内総店舗：</strong>14,673店<br>
+                    <strong>概要：</strong>大手CVSの一角。月次で純増基調を維持しており、地方中核〜住宅地での新規出店が継続</p>
+                    <br>
+                    <p><strong>効果：</strong>見送り/小規模化/推奨の三択で外し投資を回避。出店後、即閉店の回避と規模・営業時間の最適化を実現</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">導入しやすい価格体系</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>診断</h3>
+                    <div class="price">月30万円</div>
+                    <ul class="price-features">
+                        <li>1エリア（500m×5ブロック）</li>
+                        <li>OCI集計</li>
+                        <li>四半期「当たりリスト」</li>
+                        <li>初期導入に最適</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">詳細を見る</a>
+                </div>
+                <div class="pricing-card recommended">
+                    <div class="recommended-badge">おすすめ</div>
+                    <h3>SaaS（常時運用）</h3>
+                    <div class="price">月80万円</div>
+                    <ul class="price-features">
+                        <li>複数メッシュ</li>
+                        <li>LLM判定API</li>
+                        <li>アラート機能</li>
+                        <li>四半期レビュー</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">詳細を見る</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>成功報酬（任意）</h3>
+                    <div class="price">削減額の5-10%</div>
+                    <ul class="price-features">
+                        <li>他プランと組み合わせ可能</li>
+                        <li>成果に応じた支払い</li>
+                        <li>リスク分散型</li>
+                        <li>長期的なパートナーシップに最適</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>「撤退は敗北ではなく最適化。出店は賭けではなく検証。」</h2>
+            <p>——投資前に"いない"を確かめる。</p>
+            <a href="mailto:contact@oci-service.com" class="cta-button">お問い合わせ・無料診断申込</a>
+            <br><br>
+            <p style="font-size: 1rem; opacity: 0.8;">
+                <strong>PoC条件：</strong>期間6週間 | 範囲500m×5ブロック | 費用：診断月30万円/社 + 成功報酬：削減額の8%<br>
+                <strong>参考：</strong>ATM運用コスト感 = 初期約300万円/月次約30万円/台（目安）
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#solution">住み続け指数（OCI）</a></li>
+                        <li><a href="#how-it-works">仕組み・技術</a></li>
+                        <li><a href="#customers">導入事例</a></li>
+                        <li><a href="#pricing">料金プラン</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>対象業界</h3>
+                    <ul>
+                        <li><a href="#">銀行・金融機関</a></li>
+                        <li><a href="#">コンビニエンスストア</a></li>
+                        <li><a href="#">小売チェーン</a></li>
+                        <li><a href="#">地方自治体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>企業情報</h3>
+                    <ul>
+                        <li><a href="#">会社概要</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <p>Email: contact@oci-service.com<br>
+                    Tel: 03-XXXX-XXXX<br>
+                    営業時間: 平日 9:00-18:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 住み続け指数（OCI）サービス. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.problem-card, .step, .customer-card, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
